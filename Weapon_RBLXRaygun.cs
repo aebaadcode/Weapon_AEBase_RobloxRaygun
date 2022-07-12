@@ -142,7 +142,7 @@ function RBLX_RaygunProjectile::onCollision(%this, %obj, %col, %fade, %pos, %nor
 function RBLX_RaygunProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal)
 {
 	%col.zapTicks = 10; // 250ms ticks
-	%col.zapDamage = 10; // damage per tick
+	%col.zapDamage = 5; // damage per tick
 	%col.zap();
 	AETrailedProjectile::Damage(%this, %obj, %col, %fade, %pos, %normal);
 }
@@ -260,6 +260,10 @@ datablock ShapeBaseImageData(RBLX_RaygunImage)
 	spreadBase = 0;
 	spreadMin = 0;
 	spreadMax = 0;
+	
+	projectileFalloffStart = $ae_falloffPistolStart;
+	projectileFalloffEnd = $ae_falloffPistolEnd;
+	projectileFalloffDamage = $ae_falloffPistol;
 
    //Mag = " ";
 
@@ -451,8 +455,8 @@ function RBLX_RaygunImage::onReady(%this,%obj,%slot)
 
 function RBLX_RaygunImage::onMount(%this,%obj,%slot)
 {
+	%obj.stopAudio(1); 
     %obj.playAudio(1, RBLX_RaygunEquip);
-	%obj.aeplayThread(2, wrench);
 	%this.AEMountSetup(%obj, %slot);
 	parent::onMount(%this,%obj,%slot);
 }

@@ -321,7 +321,7 @@ function Player::zapLoop(%obj)
 		%obj.spawnExplosion(electrocuteProjectile,"1 1 1");
 
 		%obj.rex_stun = "";
-		%obj.grenade_UpdateSpeed();
+		%obj.aeUpdateSpeed();
 
 		if(isObject(%obj.client))
 		{
@@ -337,7 +337,7 @@ function Player::zapLoop(%obj)
 	}
 
 	%obj.rex_stun = 0.6;
-	%obj.grenade_UpdateSpeed();
+	%obj.aeUpdateSpeed();
 
 	%vel = vectorScale(%obj.getVelocity(), 0.3);
 	%obj.setVelocity(getWords(%vel, 0, 1) SPC getWord(%obj.getVelocity(), 2));
